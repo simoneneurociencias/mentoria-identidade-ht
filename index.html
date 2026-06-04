@@ -339,6 +339,58 @@
       margin-top: 16px;
     }
 
+    /* ── FORM DIAGNÓSTICO ── */
+    .diagnostico {
+      background: #fff;
+      padding: 72px 0;
+    }
+    .diagnostico h2 { margin-bottom: 10px; }
+    .diagnostico .subtitle {
+      font-size: 1rem;
+      color: #555;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .diag-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    @media (max-width: 520px) { .diag-form { grid-template-columns: 1fr; } }
+    .diag-form input {
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s;
+      width: 100%;
+    }
+    .diag-form input:focus { border-color: #7c3aed; }
+    .diag-form .btn--submit {
+      grid-column: 1 / -1;
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .diag-form .btn--submit:hover { opacity: .88; }
+    .diag-disclaimer {
+      font-size: .75rem;
+      color: #999;
+      margin-top: 10px;
+      text-align: center;
+    }
+
     /* ── CTA FINAL ── */
     .cta-final {
       padding: 80px 0;
@@ -718,6 +770,25 @@
       <span class="icon">🛡️</span>
       <span>Diagnóstico inicial <strong>gratuito e sem compromisso</strong>. Se após a conversa você sentir que não é o momento certo, não há nenhuma obrigação. A decisão é sempre sua.</span>
     </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FORM DIAGNÓSTICO GRATUITO
+═══════════════════════════════════════════ -->
+<section class="diagnostico" id="diagnostico">
+  <div class="container" style="text-align:center;">
+    <span class="label">Não quer ir direto ao WhatsApp?</span>
+    <h2>Solicite seu diagnóstico gratuito</h2>
+    <p class="subtitle">Preencha abaixo e Simone entra em contato para agendar uma conversa inicial — sem compromisso.</p>
+    <form class="diag-form" action="https://formspree.io/f/SEUID" method="POST">
+      <input type="text"  name="nome"      placeholder="Seu nome"        required />
+      <input type="email" name="email"     placeholder="Seu e-mail"      required />
+      <input type="tel"   name="whatsapp"  placeholder="WhatsApp (com DDD)" />
+      <button type="submit" class="btn--submit">QUERO MEU DIAGNÓSTICO GRATUITO</button>
+    </form>
+    <p class="diag-disclaimer">Seus dados são usados apenas para agendamento. Sem spam.</p>
   </div>
 </section>
 
