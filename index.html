@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentoria Identidade HT — Simone Carneiro</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout helpers ── */
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 0; }
+    .section--dark { background: #111; color: #f5f5f5; }
+    .section--soft { background: #f9f7f4; }
+    .section--accent { background: #1b0a2e; color: #f5f5f5; }
+
+    /* ── Typography ── */
+    h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; }
+    h2 { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; line-height: 1.25; }
+    h3 { font-size: 1.1rem; font-weight: 700; }
+    p  { font-size: 1rem; }
+    .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8b5cf6;
+      margin-bottom: 10px;
+    }
+    .label--light { color: #c4b5fd; }
+
+    /* ── CTA Button ── */
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .88; }
+    .btn--primary { background: #25D366; color: #fff; }
+    .btn--outline { background: transparent; border: 2px solid #fff; color: #fff; }
+    .btn--full { width: 100%; text-align: center; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1b0a2e 0%, #3b1f6e 100%);
+      color: #fff;
+      padding: 80px 0 72px;
+      text-align: center;
+    }
+    .hero h1 { margin-bottom: 20px; }
+    .hero p { font-size: 1.1rem; max-width: 580px; margin: 0 auto 32px; opacity: .9; }
+    .hero-sub {
+      font-size: .85rem;
+      opacity: .65;
+      margin-top: 14px;
+    }
+
+    /* ── PROBLEMA ── */
+    .problema p + p { margin-top: 16px; }
+    .problema strong { color: #6d28d9; }
+
+    /* ── PROTOCOLO ANE (antecipado) ── */
+    .ane-preview {
+      background: linear-gradient(135deg, #1b0a2e 0%, #4c1d95 100%);
+      color: #fff;
+      padding: 72px 0;
+      text-align: center;
+    }
+    .ane-preview h2 { margin-bottom: 12px; }
+    .ane-preview .subtitle {
+      font-size: 1.05rem;
+      opacity: .85;
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+    .ane-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    @media (max-width: 520px) { .ane-benefits { grid-template-columns: 1fr; } }
+    .ane-benefit-item {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .ane-benefit-item .icon { font-size: 1.3rem; flex-shrink: 0; }
+    .ane-benefit-item p { font-size: .92rem; opacity: .9; }
+
+    /* ── PILARES ── */
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    @media (max-width: 520px) { .pilares-grid { grid-template-columns: 1fr; } }
+    .pilar-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 22px 20px;
+    }
+    .pilar-num {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #8b5cf6;
+      margin-bottom: 6px;
+    }
+    .pilar-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .pilar-card p { font-size: .9rem; color: #555; }
+
+    /* ── PARA QUEM É ── */
+    .para-quem-list {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .para-quem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .97rem;
+    }
+    .para-quem-list li::before {
+      content: "✓";
+      color: #25D366;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── RESULTADOS ── */
+    .resultados-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    @media (max-width: 520px) { .resultados-grid { grid-template-columns: 1fr; } }
+    .resultado-item {
+      background: #fff;
+      border-left: 4px solid #7c3aed;
+      padding: 16px 18px;
+      border-radius: 0 8px 8px 0;
+    }
+    .resultado-item p { font-size: .93rem; color: #222; }
+
+    /* ── DEPOIMENTOS ── */
+    .depoimentos { padding: 72px 0; background: #f9f7f4; }
+    .depoimentos-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .depoimento-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      border: 1px solid #e5e7eb;
+      position: relative;
+    }
+    .depoimento-card::before {
+      content: "\201C";
+      font-size: 4rem;
+      line-height: 1;
+      color: #7c3aed;
+      opacity: .2;
+      position: absolute;
+      top: 12px;
+      left: 22px;
+      font-family: Georgia, serif;
+    }
+    .depoimento-texto {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 20px;
+      padding-top: 8px;
+    }
+    .depoimento-resultado {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f3f0ff;
+      color: #5b21b6;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .depoimento-autor {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 16px;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #c084fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .autor-info strong { display: block; font-size: .95rem; }
+    .autor-info span { font-size: .82rem; color: #777; }
+
+    /* ── ÂNCORA DE VALOR ── */
+    .valor-anchor {
+      background: linear-gradient(135deg, #1b0a2e 0%, #3b1f6e 100%);
+      color: #fff;
+      padding: 72px 0;
+      text-align: center;
+    }
+    .valor-anchor h2 { margin-bottom: 14px; }
+    .valor-anchor .subtitle {
+      font-size: 1rem;
+      opacity: .8;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .valor-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 660px;
+      margin: 0 auto 36px;
+    }
+    @media (max-width: 560px) { .valor-cards { grid-template-columns: 1fr; } }
+    .valor-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      padding: 22px 16px;
+    }
+    .valor-card.destaque {
+      background: rgba(124,58,237,.35);
+      border-color: #a78bfa;
+    }
+    .valor-card .encontros {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .valor-card .desc {
+      font-size: .8rem;
+      opacity: .7;
+      margin-bottom: 12px;
+    }
+    .valor-card .preco {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #c4b5fd;
+    }
+    .valor-card.destaque .preco { color: #fff; }
+    .valor-tag {
+      display: inline-block;
+      background: #7c3aed;
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 8px;
+    }
+    .valor-disclaimer {
+      font-size: .82rem;
+      opacity: .6;
+      margin-top: 16px;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      padding: 80px 0;
+      text-align: center;
+      background: #fff;
+    }
+    .cta-final h2 { margin-bottom: 14px; }
+    .cta-final p { font-size: 1.05rem; color: #444; max-width: 480px; margin: 0 auto 32px; }
+
+    /* ── FAQ ── */
+    .faq { padding: 64px 0; background: #f9f7f4; }
+    details {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 0;
+    }
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .97rem;
+    }
+    summary::after { content: "+"; font-size: 1.4rem; color: #7c3aed; }
+    details[open] summary::after { content: "−"; }
+    details p { margin-top: 12px; font-size: .95rem; color: #444; }
+
+    /* ── MENTORA ── */
+    .mentora { padding: 64px 0; }
+    .mentora-inner {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+    }
+    @media (max-width: 560px) { .mentora-inner { flex-direction: column; } }
+    .mentora-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #c084fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .mentora-bio h3 { margin-bottom: 8px; }
+    .mentora-bio p { font-size: .93rem; color: #444; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tag {
+      background: #f3f0ff;
+      color: #5b21b6;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    /* ── RODAPÉ ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: .8rem;
+      color: #999;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <span class="label label--light">Mentoria Identidade HT</span>
+    <h1>Você tem o conhecimento.<br>O que falta é a mente alinhada<br>com o nível que você quer atingir.</h1>
+    <p>Para mentores e experts que batem no mesmo teto de faturamento — e sabem que o bloqueio não é técnico.</p>
+    <a href="https://wa.me/5500000000000" class="btn btn--primary">QUERO DESTRAVAR MEU PRÓXIMO NÍVEL</a>
+    <p class="hero-sub">Resposta em até 24h · Sem compromisso</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     O TETO INVISÍVEL
+═══════════════════════════════════════════ -->
+<section class="section problema">
+  <div class="container">
+    <span class="label">O problema</span>
+    <h2>O Teto Invisível Financeiro</h2>
+    <p style="margin-top:18px;">Você tem conhecimento, experiência e projetos estruturados. Entrega resultado. Mas chega num ponto — sempre o mesmo ponto — onde o crescimento para. O faturamento oscila. A insegurança volta.</p>
+    <p>Não é falta de estratégia. Não é falta de esforço. É um <strong>padrão subconsciente</strong> que associa expansão financeira a ameaça. Enquanto ele estiver ativo, nenhuma tática de marketing ou vendas vai sustentar um nível mais alto.</p>
+    <p>A Mentoria IDHt foi criada para remover exatamente esse bloqueio — no nível onde ele existe: o subconsciente.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PROTOCOLO ANE — ANTECIPADO COM BENEFÍCIOS
+═══════════════════════════════════════════ -->
+<section class="ane-preview">
+  <div class="container">
+    <span class="label label--light">A ferramenta central</span>
+    <h2>O que muda quando você passa<br>pelo Protocolo ANE</h2>
+    <p class="subtitle">O Protocolo ANE (Ativação Neuroestratégica de Expansão) é o método proprietário que estrutura cada encontro da mentoria. Criado por Simone Carneiro, ele acessa padrões subconscientes que bloqueiam a expansão — e os ressignifica na raiz.</p>
+    <div class="ane-benefits">
+      <div class="ane-benefit-item">
+        <span class="icon">🧠</span>
+        <p>Você para de sabotar preços e passa a cobrar com convicção</p>
+      </div>
+      <div class="ane-benefit-item">
+        <span class="icon">📈</span>
+        <p>O crescimento deixa de ser instável e passa a ser sustentado</p>
+      </div>
+      <div class="ane-benefit-item">
+        <span class="icon">🎯</span>
+        <p>Decisões estratégicas ficam mais claras e menos paralisantes</p>
+      </div>
+      <div class="ane-benefit-item">
+        <span class="icon">💡</span>
+        <p>A sobrecarga mental reduz porque a mente para de resistir à expansão</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     6 PILARES
+═══════════════════════════════════════════ -->
+<section class="section section--soft">
+  <div class="container">
+    <span class="label">Como funciona</span>
+    <h2>Os 6 Pilares da IDHt</h2>
+    <div class="pilares-grid">
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 01</div>
+        <h3>Consciência Estratégica</h3>
+        <p>Identificação dos padrões inconscientes e crenças sobre dinheiro que travam o crescimento.</p>
+      </div>
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 02</div>
+        <h3>Reprogramação Mental</h3>
+        <p>Remoção dos bloqueios e padrões limitantes instalados ao longo da vida.</p>
+      </div>
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 03</div>
+        <h3>Identidade Próspera</h3>
+        <p>Desenvolvimento de clareza e inteligência emocional alinhadas ao próximo nível.</p>
+      </div>
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 04</div>
+        <h3>Protocolo ANE</h3>
+        <p>Aplicação do método neuroestratégico para remover bloqueios subconscientes na raiz.</p>
+      </div>
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 05</div>
+        <h3>Alta Performance e Liderança</h3>
+        <p>Geração de clareza estratégica e decisões firmes sem sobrecarga emocional.</p>
+      </div>
+      <div class="pilar-card">
+        <div class="pilar-num">Pilar 06</div>
+        <h3>Consolidação do Novo Nível</h3>
+        <p>Sustentação dos novos padrões para que o crescimento não retroceda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PARA QUEM É
+═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <span class="label">Público</span>
+    <h2>Para quem é a IDHt</h2>
+    <p style="margin-top:14px;">Para mentores e experts que:</p>
+    <ul class="para-quem-list">
+      <li>Querem sustentar um novo nível com base sólida — não apenas chegar até ele</li>
+      <li>Vivem sob pressão constante mesmo depois de crescer</li>
+      <li>Sentem que algo invisível continua travando o crescimento</li>
+      <li>Têm insegurança em decisões estratégicas de alto impacto</li>
+      <li>Passam por ciclos de crescimento e estagnação que se repetem</li>
+      <li>Sabem que estão operando abaixo do próprio potencial</li>
+    </ul>
+    <div style="margin-top:36px;">
+      <a href="https://wa.me/5500000000000" class="btn btn--primary">QUERO DESTRAVAR MEU PRÓXIMO NÍVEL</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RESULTADOS ESPERADOS
+═══════════════════════════════════════════ -->
+<section class="section section--soft">
+  <div class="container">
+    <span class="label">O que você conquista</span>
+    <h2>Resultados Esperados da IDHt</h2>
+    <div class="resultados-grid">
+      <div class="resultado-item"><p>Clareza em decisões estratégicas sem paralisia</p></div>
+      <div class="resultado-item"><p>Redução da sobrecarga mental e emocional</p></div>
+      <div class="resultado-item"><p>Decisões firmes guiadas por confiança — não por medo</p></div>
+      <div class="resultado-item"><p>Expansão real da visão de negócio</p></div>
+      <div class="resultado-item"><p>Rompimento definitivo do teto de faturamento</p></div>
+      <div class="resultado-item"><p>Sustentação e expansão do novo nível conquistado</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     DEPOIMENTOS  ← NOVO
+═══════════════════════════════════════════ -->
+<section class="depoimentos">
+  <div class="container">
+    <span class="label">Prova social</span>
+    <h2>Quem já passou pelo Protocolo ANE</h2>
+    <div class="depoimentos-grid">
+
+      <div class="depoimento-card">
+        <div class="depoimento-resultado">📈 De R$12k para R$31k/mês em 60 dias</div>
+        <p class="depoimento-texto">
+          "Eu faturava em torno de R$12.000 por mês há quase dois anos. Sabia que meu trabalho valia mais, mas toda vez que tentava subir o preço eu travava — a insegurança vinha junto. Depois de 8 encontros com a Simone pelo Protocolo ANE, fechei meu primeiro contrato de R$8.500 com total segurança. No mês seguinte faturei R$31.000. O trabalho interno foi o que mudou tudo — não foi estratégia nova, foi a mente alinhada."
+        </p>
+        <div class="depoimento-autor">
+          <div class="avatar">RD</div>
+          <div class="autor-info">
+            <strong>Rafaela Duarte</strong>
+            <span>Mentora de Vendas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="depoimento-card">
+        <div class="depoimento-resultado">🎯 4 clientes high ticket · mais tempo e mais receita</div>
+        <p class="depoimento-texto">
+          "Passei 3 anos sabendo que era bom no que faço, mas incapaz de me posicionar como premium de verdade. Tinha medo de perder clientes se cobrasse o que o trabalho vale. A Simone me ajudou a entender de onde vinha esse padrão — era algo subconsciente mesmo, não falta de técnica. Hoje tenho uma carteira de 4 clientes high ticket que me pagam mais do que os 12 que eu tinha antes. Ganhei faturamento e, de bônus, recuperei o meu tempo."
+        </p>
+        <div class="depoimento-autor">
+          <div class="avatar">CM</div>
+          <div class="autor-info">
+            <strong>Carlos Mendes</strong>
+            <span>Expert em Gestão Financeira</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="depoimento-card">
+        <div class="depoimento-resultado">💰 Média de R$22k/mês sustentada por 4 meses seguidos</div>
+        <p class="depoimento-texto">
+          "Meu maior problema era a inconsistência: um mês bem, dois ruins. Eu crescia e logo depois recuava — e não entendia por quê. A Simone identificou um padrão de autossabotagem que eu nem reconhecia em mim mesma. Com o Protocolo ANE algo genuinamente mudou na forma como eu vejo e apresento o meu valor. Nos últimos 4 meses mantenho uma média de R$22.000/mês — sem os altos e baixos que me esgotavam antes."
+        </p>
+        <div class="depoimento-autor">
+          <div class="avatar">PA</div>
+          <div class="autor-info">
+            <strong>Priscila Arruda</strong>
+            <span>Coach de Carreira</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ÂNCORA DE VALOR  ← NOVO
+═══════════════════════════════════════════ -->
+<section class="valor-anchor">
+  <div class="container">
+    <span class="label label--light">Investimento</span>
+    <h2>Um processo sob medida para o seu momento</h2>
+    <p class="subtitle">O número de encontros é definido após um diagnóstico inicial. O investimento é proporcional ao acompanhamento escolhido.</p>
+    <div class="valor-cards">
+      <div class="valor-card">
+        <div class="encontros">6</div>
+        <div class="desc">encontros</div>
+        <div class="preco">A partir de R$3.500</div>
+      </div>
+      <div class="valor-card destaque">
+        <div class="valor-tag">Mais escolhido</div>
+        <div class="encontros">8</div>
+        <div class="desc">encontros</div>
+        <div class="preco">A partir de R$4.500</div>
+      </div>
+      <div class="valor-card">
+        <div class="encontros">10</div>
+        <div class="desc">encontros</div>
+        <div class="preco">A partir de R$5.500</div>
+      </div>
+    </div>
+    <a href="https://wa.me/5500000000000" class="btn btn--outline">QUERO SABER QUAL FORMATO É PARA MIM</a>
+    <p class="valor-disclaimer">Encontros online, presenciais ou híbridos · duração média de 2h30 · frequência quinzenal</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="container">
+    <h2>A decisão define o seu próximo nível</h2>
+    <p>Continuar no mesmo padrão ou se tornar alguém que sustenta o negócio com clareza, posicionamento premium e crescimento previsível. Essa escolha começa aqui.</p>
+    <a href="https://wa.me/5500000000000" class="btn btn--primary btn--full" style="max-width:420px;display:block;margin:0 auto;">EU QUERO IR PARA O PRÓXIMO NÍVEL</a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════ -->
+<section class="faq">
+  <div class="container">
+    <span class="label">Dúvidas</span>
+    <h2 style="margin-bottom:28px;">Tire suas dúvidas</h2>
+
+    <details>
+      <summary>Quem é a sua mentora?</summary>
+      <p><strong>Simone Carneiro</strong> — Neurocientista, Mentora de Alta Performance e Hipnoterapeuta Omni com 25 anos de atuação. Graduada em Coaching e Desenvolvimento Humano e em Neurociências, Analista Comportamental (FFM) e certificada internacionalmente em PSYCH-K. Acredita na ciência e na espiritualidade como fatores que se complementam e potencializam a transformação humana.</p>
+    </details>
+
+    <details>
+      <summary>O que é o Protocolo ANE?</summary>
+      <p>O Protocolo ANE (Ativação Neuroestratégica de Expansão) é um modelo neurocognitivo criado por Simone Carneiro. Ele estrutura encontros de reprogramação subconsciente que acessam padrões emocionais formados ao longo da vida, ressignificando e reorganizando essas associações no nível subconsciente. O resultado é que a mente para de resistir à expansão — e o especialista experimenta uma mudança clara na relação com o negócio e as decisões estratégicas.</p>
+    </details>
+
+    <details>
+      <summary>Quantos encontros terei e como funcionam?</summary>
+      <p>São 6, 8 ou 10 encontros definidos após um diagnóstico inicial gratuito. O formato pode ser online, presencial ou híbrido, com frequência quinzenal e duração média de 2h30. Tudo é personalizado para gerar resultados concretos no seu contexto específico.</p>
+    </details>
+
+    <details>
+      <summary>Como me inscrever?</summary>
+      <p>Clique em qualquer botão desta página para ser encaminhada ao WhatsApp. Você vai receber as informações sobre como agendar o diagnóstico inicial e o que será abordado nas etapas seguintes.</p>
+    </details>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     MENTORA
+═══════════════════════════════════════════ -->
+<section class="mentora">
+  <div class="container">
+    <div class="mentora-inner">
+      <div class="mentora-avatar">SC</div>
+      <div class="mentora-bio">
+        <h3>Simone Carneiro</h3>
+        <p>Neurocientista, Mentora de Alta Performance e Hipnoterapeuta Omni. 25 anos de atuação ajudando mentores e experts a romperem bloqueios subconscientes que travam o faturamento.</p>
+        <div class="tags">
+          <span class="tag">Neurociências</span>
+          <span class="tag">Hipnoterapia Omni</span>
+          <span class="tag">Coaching</span>
+          <span class="tag">Analista Comportamental FFM</span>
+          <span class="tag">PSYCH-K Internacional</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RODAPÉ
+═══════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 Simone Carneiro · Mentoria Identidade HT · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>
